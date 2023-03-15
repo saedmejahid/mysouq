@@ -31,3 +31,34 @@ Future<List<File>> pickImage()async
   }
   return images;
 }
+
+showAlertDialog(BuildContext context,VoidCallback onOk,String textHead,String textMessage) {
+
+  Widget cancelButton = TextButton(
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      child:const Text('Cancel')
+  );
+
+  Widget okButton = TextButton(
+      onPressed: onOk,
+      child:const Text('Ok')
+  );
+
+  AlertDialog alertDialog = AlertDialog(
+    title: Text(textHead),
+    content: Text(textMessage),
+    actions: [
+      cancelButton,
+      okButton,
+    ],
+  );
+
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alertDialog;
+      }
+  );
+}

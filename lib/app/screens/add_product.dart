@@ -1,13 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:my_souaq/app/models/category_model.dart';
 import 'package:my_souaq/app/services/admin_services.dart';
 import 'package:my_souaq/app/styles/colors.dart';
 import 'package:my_souaq/app/widgets/custom_button.dart';
 import 'package:my_souaq/app/widgets/custom_text.dart';
-import 'package:my_souaq/components/components.dart';
-import 'package:my_souaq/components/utils.dart';
 import 'dart:io';
+
+import 'package:my_souaq/components/utils.dart';
 class AddProduct extends StatefulWidget
 {
   const AddProduct({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class _AddProductState extends State<AddProduct>
   }
   void addProducts()
   {
-    if(productForm.currentState!.validate() || images.isNotEmpty)
+    if(productForm.currentState!.validate() && images.isNotEmpty)
     {
       adminServices.saveProduct(
           context: context,
@@ -57,7 +58,6 @@ class _AddProductState extends State<AddProduct>
       );
     }
   }
-
   @override
   Widget build(BuildContext context)
   {
@@ -83,7 +83,6 @@ class _AddProductState extends State<AddProduct>
           )
       ),
       body: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
         child:Form(
           key: productForm,
             child: Padding(
