@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_souaq/components/components.dart';
+import 'package:my_souaq/app/models/category_model.dart';
 class TopCategories extends StatelessWidget {
   const TopCategories({Key? key}) : super(key: key);
 

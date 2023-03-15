@@ -1,5 +1,6 @@
 import 'dart:convert';
-class Product {
+class Product
+{
   final String name;
   final double price;
   final String description;
@@ -34,20 +35,22 @@ class Product {
     );
   }
 
-  factory Product.fromMap(Map<String, dynamic> json) {
+  factory Product.fromMap(Map<String, dynamic> json)
+  {
     return Product(
       id: json["_id"] ?? '',
       name: json["name"] ?? '',
-      price: json["price"] ?? 0.00,
+      price: json["price"]?.toDouble() ?? 0.00,
       description: json["description"] ?? '',
       category: json["category"] ?? '',
       images:List<String>.from(json["images"]),
       userId: json["userId"] ?? '',
-      qty: json["qty"] ?? 0.00,
+      qty: json["qty"]?.toDouble() ?? 0.00,
 
     );
   }
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toMap()
+  {
     return {
       "id": id,
       "name": name,
