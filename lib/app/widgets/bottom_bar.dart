@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:my_souaq/app/screens/account_screen.dart';
+import 'package:my_souaq/app/screens/cart_screen.dart';
 import 'package:my_souaq/app/screens/home_screen.dart';
 import 'package:my_souaq/app/styles/colors.dart';
 class BottomBar extends StatefulWidget
@@ -25,7 +26,7 @@ class _BottomBarState extends State<BottomBar>
   [
     const HomeScreen(),
     const AccountScreen(),
-    const Center(child: Text('CartPage'),),
+    const CartScreen(),
   ];
 
   @override
