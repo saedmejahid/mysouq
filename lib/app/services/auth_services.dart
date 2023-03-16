@@ -19,15 +19,7 @@ class AuthServices{
   }) async
   {
     try{
-      User user = User(
-          id: '',
-          name: name,
-          password: password,
-          email: email,
-          address: '',
-          type: '',
-          token: ''
-      );
+      User user = User.getNewEmpty();
      http.Response res = await http.post(
                                Uri.parse('$myUri01/api/signup'),
                                body: user.toJson(),

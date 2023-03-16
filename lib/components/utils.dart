@@ -54,10 +54,10 @@ showAlertDialog(BuildContext context,VoidCallback onOk,String textHead,String te
       okButton,
     ],
   );
-
   showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (BuildContext context)
+      {
         return alertDialog;
       }
   );

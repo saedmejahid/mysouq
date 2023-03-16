@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_souaq/app/screens/search_screen.dart';
 import 'package:my_souaq/app/styles/colors.dart';
 import 'package:my_souaq/app/widgets/address_bar.dart';
 import 'package:my_souaq/app/widgets/deal_of_day.dart';
 import 'package:my_souaq/app/widgets/top_categories.dart';
-import 'package:my_souaq/provider/user_provider.dart';
-import 'package:provider/provider.dart';
 import '../widgets/carousel_image.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,10 +12,15 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+{
+  void searchForProduct(String textSearch)
+  {
+    Navigator.pushNamed(context, SearchScreen.routeName,arguments: textSearch);
+  }
   @override
-  Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context).user;
+  Widget build(BuildContext context)
+  {
     return Scaffold(
         appBar: AppBar(
           flexibleSpace: Container(
@@ -38,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       elevation: 1,
                       child: TextFormField(
+                        onFieldSubmitted: searchForProduct,
                         decoration: InputDecoration(
                             prefixIcon: InkWell(
                               onTap: () {},

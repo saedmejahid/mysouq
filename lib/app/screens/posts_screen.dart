@@ -68,10 +68,10 @@ class _PostScreenState extends State<PostScreen>
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children:
                     [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Expanded(
-                            child:Text(
+                      Expanded(
+                          child:Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
                               theProduct.name,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
@@ -80,7 +80,7 @@ class _PostScreenState extends State<PostScreen>
                                 fontSize: 15,
                               ),
                             ),
-                        ),
+                          ),
                       ),
                       IconButton(
                           onPressed: ()

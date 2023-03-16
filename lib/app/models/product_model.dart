@@ -1,68 +1,67 @@
 import 'dart:convert';
-class Product
-{
+
+import 'package:my_souaq/app/models/rating_model.dart';
+class Product {
+
   final String name;
-  final double price;
   final String description;
+  final double price;
   final double qty;
   final String category;
   final List<String> images;
   String? id;
   String? userId;
+  final List<Rating>? rating;
 
-  Product({
-      required this.name,
-      required this.price,
-      required this.description,
-      required this.qty,
-      required this.category,
-      required this.images,
-      this.id,
-      this.userId,
-  });
+  Product({required this.name,required this.description,required this.price,required this.qty,required this.category,
+    required this.images, this.id, this.userId, this.rating});
 
-  factory Product.getNewEmpty()
-  {
+  factory Product.getNewEmpty() {
     return Product(
-      id: '',
-      name: '',
-      description: '',
-      category: '',
-      userId: '',
-      qty: 0.00,
-      price: 0.00,
+      name:  '',
+      description:  '',
+      price:  0.00,
+      qty:  0.00,
+      category:  '',
       images: [],
+      id: '',
+      userId: '',
     );
   }
 
-  factory Product.fromMap(Map<String, dynamic> json)
-  {
-    return Product(
-      id: json["_id"] ?? '',
-      name: json["name"] ?? '',
-      price: json["price"]?.toDouble() ?? 0.00,
-      description: json["description"] ?? '',
-      category: json["category"] ?? '',
-      images:List<String>.from(json["images"]),
-      userId: json["userId"] ?? '',
-      qty: json["qty"]?.toDouble() ?? 0.00,
-
-    );
-  }
-  Map<String, dynamic> toMap()
-  {
+  Map<String, dynamic> toMap() {
     return {
-      "id": id,
       "name": name,
-      "price": price,
       "description": description,
+      "price": price,
+      "qty": qty,
       "category": category,
       "images": images,
-      "userId":userId,
-      "qty":qty,
+      "id": id,
+      "userId": userId,
+      "rating": rating,
     };
   }
 
+  factory Product.fromMap(Map<String, dynamic> json) {
+    return Product(
+      name: json['name'] ?? '',
+      description: json['description'] ?? '',
+      price: json['price']?.toDouble() ?? 0.00,
+      qty: json['qty']?.toDouble() ?? 0.00,
+      category: json['category'] ?? '',
+      images: List<String>.from(json['images']),
+      id: json['_id'] ?? '',
+      userId: json['userId'] ?? '',
+      rating: json['rating'] != null ? List<Rating>.from(
+        json['rating']?.map(
+              (x) => Rating.fromMap(x),
+        ),
+      ) : null,
+    );
+  }
+
   String toJson() => json.encode(toMap());
+
   factory Product.fromJson(String source) => Product.fromMap(json.decode(source));
 }
