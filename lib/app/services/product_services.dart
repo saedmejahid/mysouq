@@ -13,8 +13,9 @@ class ProductServices {
   void rateProduct({
     required BuildContext context,
     required Product product,
-    required double rating }) async {
-
+    required double rating
+  }) async
+  {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
 

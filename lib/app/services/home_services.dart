@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:my_souaq/app/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:my_souaq/components/error_handling.dart';
@@ -13,7 +12,6 @@ class HomeServices
   Future<List<Product>> getCategoryProducts({
     required BuildContext context,
     required String category,
-
 })async
   {
     final userProvider = Provider.of<UserProvider>(context,listen: false);
@@ -50,7 +48,6 @@ class HomeServices
     return productsList;
 
   }
-
 
   Future<List<Product>> searchForProduct({
     required BuildContext context,
