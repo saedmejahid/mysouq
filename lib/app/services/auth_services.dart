@@ -12,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthServices{
   void singUpUser({
-    required context,
+    required  context,
     required String email,
     required String password,
     required String name
@@ -42,7 +42,7 @@ class AuthServices{
   }
 
   void singInUser({
-    required context,
+    required  context,
     required String email,
     required String password,
   }) async
@@ -76,6 +76,8 @@ class AuthServices{
       showSnackBar(context, error.toString());
     }
   }
+
+
   void getUserDate(BuildContext context)async
   {
     try

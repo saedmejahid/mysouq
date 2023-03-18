@@ -35,6 +35,7 @@ Route<dynamic> generateRoute(RouteSettings routeSettings)
           settings: routeSettings,
           builder: (context) => const AddProduct()
       );
+
     case CategoryDeal.routeName:
       var  category = routeSettings.arguments as String;
       return MaterialPageRoute(
@@ -43,6 +44,7 @@ Route<dynamic> generateRoute(RouteSettings routeSettings)
               category: category
           ),
       );
+
     case SearchScreen.routeName:
       var  text = routeSettings.arguments as String;
       return MaterialPageRoute(
@@ -51,14 +53,16 @@ Route<dynamic> generateRoute(RouteSettings routeSettings)
           searchText: text,
         ),
       );
+
     case ProductDetailScreen.routeName:
       var product = routeSettings.arguments as Product;
       return MaterialPageRoute(
           settings: routeSettings,
-          builder: (_) => ProductDetailScreen(
+          builder: (context) => ProductDetailScreen(
             product: product,
           )
       );
+
     default: return MaterialPageRoute(
           settings: routeSettings,
           builder: (context) => const Scaffold(

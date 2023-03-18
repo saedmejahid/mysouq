@@ -2,26 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:my_souaq/app/models/product_model.dart';
 import 'package:my_souaq/provider/user_provider.dart';
 import 'package:provider/provider.dart';
-
-class ProductCardCart extends StatefulWidget {
+class ProductCardCart extends StatefulWidget
+{
   const ProductCardCart({Key? key, required this.index}) : super(key: key);
-
   final int index;
-
   @override
   State<ProductCardCart> createState() => _ProductCardCartState();
 }
-
-class _ProductCardCartState extends State<ProductCardCart> {
-
+class _ProductCardCartState extends State<ProductCardCart>
+{
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     final productCart = context.watch<UserProvider>().user.cart[widget.index];
     final product = Product.fromMap(productCart['product']);
     final qty = productCart['qty'];
-
     return Column(
-      children: [
+      children:
+      [
         Container(
           margin: const EdgeInsets.symmetric(
             horizontal: 10,
@@ -29,7 +27,10 @@ class _ProductCardCartState extends State<ProductCardCart> {
           child: Row(
             children: [
               Image.network(
-                product.images[0],
+                product.images
+                [
+                  0
+                ],
                 fit: BoxFit.contain,
                 height: 135,
                 width: 135,

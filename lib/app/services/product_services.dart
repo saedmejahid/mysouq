@@ -30,8 +30,14 @@ class ProductServices {
         }),
       );
 
-      httpErrorHandel(response: res, context: context, onSuccess: () {
-        showSnackBar(context, 'product has been rated successfully');
+      httpErrorHandel(
+          response: res,
+          context: context,
+          onSuccess: ()
+          {
+        showSnackBar(
+            context, 'product has been rated successfully',
+        );
       });
     } catch (e) {
       showSnackBar(context, e.toString());
