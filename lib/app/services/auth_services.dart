@@ -78,7 +78,7 @@ class AuthServices{
   }
 
 
-  void getUserDate(BuildContext context)async
+  void getUserDate( context)async
   {
     try
     {

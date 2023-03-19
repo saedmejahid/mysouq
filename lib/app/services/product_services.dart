@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:my_souaq/app/models/product_model.dart';
 import 'package:my_souaq/app/models/user_model.dart';
 import 'package:my_souaq/components/error_handling.dart';
@@ -11,7 +10,7 @@ import 'package:http/http.dart' as http;
 class ProductServices {
 
   void rateProduct({
-    required BuildContext context,
+    required  context,
     required Product product,
     required double rating
   }) async

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:my_souaq/app/models/product_model.dart';
-import 'package:flutter/material.dart';
 import 'package:my_souaq/components/error_handling.dart';
 import 'package:my_souaq/components/utils.dart';
 import 'package:my_souaq/constants/constants.dart';
@@ -10,7 +9,7 @@ import 'package:http/http.dart' as http;
 class HomeServices
 {
   Future<List<Product>> getCategoryProducts({
-    required BuildContext context,
+    required  context,
     required String category,
 })async
   {
