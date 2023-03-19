@@ -25,7 +25,7 @@ class CarouselImage extends StatelessWidget
         enableInfiniteScroll: true,
         reverse: false,
         autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 1),
+        autoPlayInterval: const Duration(seconds: 5),
         autoPlayAnimationDuration: const Duration(milliseconds: 800),
         autoPlayCurve: Curves.easeInOut,
         enlargeCenterPage: true,
