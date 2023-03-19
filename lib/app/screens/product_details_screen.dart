@@ -104,9 +104,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 height: 300,
               ),
             ),
+            const SizedBox(
+                height: 10
+            ),
             Container(
               color: Colors.black12,
-              height: 5,
+              height: 2,
             ),
             Padding(
               padding: const EdgeInsets.all(8),
@@ -135,10 +138,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Text(widget.product.description),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(
+                height: 10
+            ),
             Container(
               color: Colors.black12,
-              height: 5,
+              height: 2,
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0),

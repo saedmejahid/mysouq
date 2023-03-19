@@ -31,7 +31,7 @@ class _CartScreenState extends State<CartScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: const [
             Text(
-              'Cart Screen',
+              'Your Cart',
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
