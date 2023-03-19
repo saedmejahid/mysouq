@@ -30,11 +30,15 @@ class Components
   ];
   static const List<String> carouselImages =
   [
-    'https://eg.jumia.is/cms/Ramadan-23/Motherday/Smart-Phones/Smart10.png',
-    'https://eg.jumia.is/cms/Ramadan-23/Deals/Supermarket/Oil-Ghee/Oil10.jpg',
-    'https://eg.jumia.is/cms/Ramadan-23/Deals/Home/Oriental-Weavers/DesktopARpo.png',
-    'https://eg.jumia.is/cms/Ramadan-23/Motherday/Smart-Phones/Smart10.png',
-    'https://eg.jumia.is/cms/Ramadan-23/OPT-8th-March/MD/Andora/AndoraCPRsliderDesktopAR.png',
-    'https://eg.jumia.is/cms/Ramadan-23/OPT-5th-March/Dejavu/Dejavu3.jpg',
+    'https://res.cloudinary.com/dkmunh6tj/image/upload/v1679207812/Books/yfx2fo1buf1rawlkdbcj.webp',
+    'https://res.cloudinary.com/dkmunh6tj/image/upload/v1679206827/Computers/cqnxmjmkkmeyjhv59rvf.jpg',
+    'https://res.cloudinary.com/dkmunh6tj/image/upload/v1679207949/Mobiles/cigrvapuazl7qkadj5fh.webp',
+    'https://res.cloudinary.com/dkmunh6tj/image/upload/v1678925164/Mobiles/knw2nluut8lludwpoqdu.webp',
+    'https://res.cloudinary.com/dkmunh6tj/image/upload/v1679207422/Appliance/oobduagwshfd9qfejhfw.jpg',
+    'https://res.cloudinary.com/dkmunh6tj/image/upload/v1679207713/Fashion/viyxnbndiyiipbkiauya.jpg',
+    'https://res.cloudinary.com/dkmunh6tj/image/upload/v1678925210/Fashion/puis7qpczvkswsbdl868.jpg',
+    'https://res.cloudinary.com/dkmunh6tj/image/upload/v1679189835/Mobiles/ctv1yhjbcju7qmggwitf.webp',
+    'https://res.cloudinary.com/dkmunh6tj/image/upload/v1679206644/Fashion/mm56iz4esdlyredugqrd.jpg',
+    'https://res.cloudinary.com/dkmunh6tj/image/upload/v1679207134/Appliance/hwzqb2n2gifsbghjljg3.webp',
   ];
 }
