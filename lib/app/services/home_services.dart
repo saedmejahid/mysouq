@@ -50,7 +50,7 @@ class HomeServices
   }
 
   Future<List<Product>> searchForProduct({
-    required BuildContext context,
+    required  context,
     required String text,
 
   })async
@@ -91,7 +91,7 @@ class HomeServices
   }
 
   Future<List<Product>> dealOfProducts({
-    required BuildContext context,
+    required  context,
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     List<Product> productsList = [];
@@ -105,7 +105,7 @@ class HomeServices
       );
 
       httpErrorHandel(response: res, context: context, onSuccess: () {
-        for (int i =0; i < jsonDecode(res.body).length; i ++) {
+        for (int i =0; i < jsonDecode(res.body).length; i++) {
           productsList.add(
               Product.fromJson(
                   jsonEncode(jsonDecode(res.body)[i])
