@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 
 class CustomText extends StatelessWidget
 {
-  const CustomText({Key? key,required this.formController,required this.hintText,this.maxLiens =1}) : super(key: key);
+  const CustomText({
+    Key? key,
+    required this.formController,
+    required this.hintText,
+    this.maxLiens =1,
+    this.icon
+  }) : super(key: key);
   final TextEditingController formController;
   final String hintText;
   final int maxLiens;
+  final IconData ? icon;
 
   @override
   Widget build(BuildContext context)
@@ -13,6 +20,7 @@ class CustomText extends StatelessWidget
     return TextFormField(
       controller: formController,
       decoration:  InputDecoration(
+        prefixIcon: icon != null ? Icon(icon) : null,
         hintText: hintText,
         border: const OutlineInputBorder(
           borderSide: BorderSide(
