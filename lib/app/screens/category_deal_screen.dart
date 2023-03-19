@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_souaq/app/models/product_model.dart';
+import 'package:my_souaq/app/screens/product_details_screen.dart';
 import 'package:my_souaq/app/services/home_services.dart';
 import 'package:my_souaq/app/styles/colors.dart';
 import 'package:my_souaq/app/widgets/loader.dart';
@@ -95,41 +96,50 @@ class _CategoryDealState extends State<CategoryDeal>
               itemBuilder:(context,index)
               {
                 final product = productList![index];
-                return Column(
-                  children: [
-                    SizedBox(
-                      height: 140,
-                      child: SingleProduct(
-                        image: product.images[0],
+                return InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      ProductDetailScreen.routeName,
+                      arguments: productList![index],
+                    );
+                  },
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 140,
+                        child: SingleProduct(
+                          image: product.images[0],
+                        ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children:
-                      [
-                        Expanded(
-                          child:Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(
-                              product.name,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children:
+                        [
+                          Expanded(
+                            child:Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Text(
+                                product.name,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Text(
-                          '${product.price} EGP',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
+                          Text(
+                            '${product.price} EGP',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                        ],
+                      )
+                    ],
+                  ),
                 );
               }
           )

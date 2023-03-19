@@ -53,10 +53,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+          children:
+          [
             Text(
-              'Detail For ${widget.product.name}',
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              widget.product.name,
+            style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+            ),
             )
           ],
         ),
