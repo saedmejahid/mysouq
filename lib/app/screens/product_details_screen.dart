@@ -51,17 +51,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               gradient: Declarations.appBarGradient
           ),
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children:
-          [
-            Text(
-              widget.product.name,
-            style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-            ),
-            )
-          ],
+        title: Text(
+          'Detail For ${widget.product.name}',
+        style: const TextStyle(
+              fontWeight: FontWeight.bold,
+        ),
         ),
       ),
       body: SingleChildScrollView(
