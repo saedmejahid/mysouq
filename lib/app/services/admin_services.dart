@@ -67,7 +67,7 @@ class AdminService
     }
   }
 
- Future<List<Product>> getAllProducts(BuildContext context) async
+ Future<List<Product>> getAllProducts( context) async
  {
    final userProvider = Provider.of<UserProvider>(context,listen: false);
    List<Product> productsList = [];
@@ -103,7 +103,7 @@ class AdminService
    return productsList;
  }
 
-  void deleteProduct({required BuildContext context,required Product product,required VoidCallback onSuccess})async
+  void deleteProduct({required  context,required Product product,required VoidCallback onSuccess})async
   {
     final userProvider = Provider.of<UserProvider>(context,listen: false);
     try
