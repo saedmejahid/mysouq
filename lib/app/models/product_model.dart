@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:my_souaq/app/models/rating_model.dart';
 class Product {
 

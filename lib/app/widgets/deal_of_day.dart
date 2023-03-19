@@ -4,31 +4,32 @@ import 'package:my_souaq/app/screens/product_details_screen.dart';
 import 'package:my_souaq/app/services/home_services.dart';
 import 'package:my_souaq/app/widgets/loader.dart';
 import 'package:my_souaq/app/widgets/product_card_horizontal.dart';
-class DealOfDay extends StatefulWidget {
+class DealOfDay extends StatefulWidget
+{
   const DealOfDay({Key? key}) : super(key: key);
-
   @override
   State<DealOfDay> createState() => _DealOfDayState();
 }
-
-class _DealOfDayState extends State<DealOfDay> {
+class _DealOfDayState extends State<DealOfDay>
+{
   List<Product>? productList;
   HomeServices homeService = HomeServices();
-
   @override
-  void initState() {
+  void initState()
+  {
     super.initState();
     fetchCategories();
   }
-
-  fetchCategories() async {
+  fetchCategories() async
+  {
     productList = await homeService.dealOfProducts(
         context: context);
     setState(() {});
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Column(
       children: [
         Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_souaq/app/models/product_model.dart';
+import 'package:my_souaq/app/screens/product_details_screen.dart';
 class ProductCard extends StatelessWidget
 {
   const ProductCard({Key? key, required this.product, required this.isLiked}) : super(key: key);
@@ -26,36 +27,43 @@ class ProductCard extends StatelessWidget
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         child: Stack(
           alignment: Alignment.center,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        const CircleAvatar(
-                          radius: 40,
-                          backgroundColor: Colors.amberAccent,
-                        ),
-                        Image.network(product.images[0])
-                      ],
-                    )
-                ),
-                Text(
-                  product.name,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const Text(
-                  'Best Sale',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
-                ),
-                Text(
-                  '${product.price} \$',
-                  style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.indigo),
-                ),
-              ],
+          children:
+          [
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, ProductDetailScreen.routeName, arguments: product);
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children:
+                [
+                  Expanded(
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          const CircleAvatar(
+                            radius: 40,
+                            backgroundColor: Colors.amberAccent,
+                          ),
+                          Image.network(product.images[0])
+                        ],
+                      )
+                  ),
+                  Text(
+                    product.name,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const Text(
+                    'Best Sale',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+                  ),
+                  Text(
+                    '${product.price} \$',
+                    style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.indigo),
+                  ),
+                ],
+              ),
             ),
             Positioned(
                 left: 0,
