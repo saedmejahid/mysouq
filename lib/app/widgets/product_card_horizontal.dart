@@ -18,13 +18,18 @@ class ProductCardHorizontal extends StatelessWidget {
     }
 
     return Column(
-      children: [
+      children:
+      [
+       const SizedBox(
+          height: 20,
+        ),
         Container(
           margin: const EdgeInsets.symmetric(
             horizontal: 10,
           ),
           child: Row(
-            children: [
+            children:
+            [
               Image.network(
                 product.images[0],
                 fit: BoxFit.contain,
@@ -32,7 +37,8 @@ class ProductCardHorizontal extends StatelessWidget {
                 width: 135,
               ),
               Column(
-                children: [
+                children:
+                [
                   Container(
                     width: 235,
                     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -62,6 +68,9 @@ class ProductCardHorizontal extends StatelessWidget {
                       ),
                       maxLines: 2,
                     ),
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   Container(
                     width: 235,

@@ -25,7 +25,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   double userRating = 0;
 
   @override
-  void initState() {
+  void initState()
+  {
     super.initState();
     double totalRating =0;
     var user = Provider.of<UserProvider>(context, listen: false).user;
@@ -197,7 +198,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             foregroundColor: Colors.white,
             label: 'Add to Cart',
             labelStyle: const TextStyle(fontSize: 18.0),
-            onTap: () {
+            onTap: ()
+            {
               productServices.addProductToCart(
                   context: context,
                   product: widget.product,

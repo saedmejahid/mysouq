@@ -30,7 +30,8 @@ class ProductCard extends StatelessWidget
           children:
           [
             GestureDetector(
-              onTap: () {
+              onTap: ()
+              {
                 Navigator.pushNamed(context, ProductDetailScreen.routeName, arguments: product);
               },
               child: Column(
@@ -41,7 +42,8 @@ class ProductCard extends StatelessWidget
                   Expanded(
                       child: Stack(
                         alignment: Alignment.center,
-                        children: [
+                        children:
+                        [
                           const CircleAvatar(
                             radius: 40,
                             backgroundColor: Colors.amberAccent,

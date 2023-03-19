@@ -40,6 +40,9 @@ class _DealOfDayState extends State<DealOfDay>
             style: TextStyle(fontSize: 20),
           ),
         ),
+        const SizedBox(
+          height: 10,
+        ),
         SizedBox(
             height: 500,
             width: double.infinity,
