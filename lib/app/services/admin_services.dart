@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 class AdminService
 {
   void saveProduct({
-    required BuildContext context,
+    required  context,
     required String name,
     required double price,
     required String description,

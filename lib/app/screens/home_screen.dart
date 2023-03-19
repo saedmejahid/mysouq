@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_souaq/app/screens/search_screen.dart';
 import 'package:my_souaq/app/styles/colors.dart';
 import 'package:my_souaq/app/widgets/address_bar.dart';
+import 'package:my_souaq/app/widgets/carousel_iamge.dart';
 import 'package:my_souaq/app/widgets/deal_of_day.dart';
 import 'package:my_souaq/app/widgets/top_categories.dart';
-import '../widgets/carousel_image.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
   static const String routeName = '/home';
