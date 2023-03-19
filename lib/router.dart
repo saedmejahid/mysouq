@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_souaq/app/models/product_model.dart';
 import 'package:my_souaq/app/screens/add_product.dart';
+import 'package:my_souaq/app/screens/address_screen.dart';
 import 'package:my_souaq/app/screens/auth_screen.dart';
 import 'package:my_souaq/app/screens/category_deal_screen.dart';
 import 'package:my_souaq/app/screens/home_screen.dart';
@@ -61,6 +62,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings)
           builder: (context) => ProductDetailScreen(
             product: product,
           )
+      );
+    case AddressScreen.routeName:
+      return MaterialPageRoute(
+          settings: routeSettings,
+          builder: (context) => const AddressScreen(),
       );
 
     default: return MaterialPageRoute(

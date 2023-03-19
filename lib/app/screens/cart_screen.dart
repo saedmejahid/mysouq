@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_souaq/app/screens/address_screen.dart';
 import 'package:my_souaq/app/styles/colors.dart';
 import 'package:my_souaq/app/widgets/address_bar.dart';
 import 'package:my_souaq/app/widgets/cart_suptotal.dart';
@@ -45,7 +46,10 @@ class _CartScreenState extends State<CartScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: CustomButton(
                   text: 'Proceed to Buy (${user.cart.length} items)',
-                  onTap: () {},
+                  onTap: ()
+                  {
+                    Navigator.pushNamed(context, AddressScreen.routeName);
+                  },
                 ),
               ),
               const SizedBox(height: 15),
