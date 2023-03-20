@@ -39,6 +39,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/gpay.json
+    - assets/applepay.json
 
   # To add assets to your application, add an assets section, like this:
   # example:
