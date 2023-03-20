@@ -126,7 +126,7 @@ class ProductServices {
             );
           });
     } catch (e) {
-      showSnackBar(context, e.toString());
+       e.toString();
     }
   }
 
@@ -169,7 +169,7 @@ class ProductServices {
             Navigator.pop(context);
           });
     } catch (e) {
-      showSnackBar(context, e.toString());
+      e.toString();
     }
   }
 }
