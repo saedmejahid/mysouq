@@ -55,150 +55,152 @@ class _AuthScreenState extends State<AuthScreen>
   {
     return Scaffold(
       backgroundColor: Declarations.greyBackgroundColor,
-      body: SafeArea(
-          child: Padding(
-           padding: const EdgeInsets.all(8.0),
-           child: Column(
-             crossAxisAlignment: CrossAxisAlignment.start,
-           children:
-           [
-             const Text(
-               'Welcome',
-              style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500
-              ),
-            ),
-            ListTile(
-              tileColor: auth == AuthEnum.signup ? Declarations.backgroundColor : Declarations.greyBackgroundColor,
-              title: const Text(
-                  'New Customer',
+      body: SingleChildScrollView(
+        child: SafeArea(
+            child: Padding(
+             padding: const EdgeInsets.all(8.0),
+             child: Column(
+               crossAxisAlignment: CrossAxisAlignment.start,
+             children:
+             [
+               const Text(
+                 'Welcome',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500
                 ),
               ),
-              leading: Radio(
-                activeColor: Declarations.secondaryColor,
-                  value:AuthEnum.signup ,
+              ListTile(
+                tileColor: auth == AuthEnum.signup ? Declarations.backgroundColor : Declarations.greyBackgroundColor,
+                title: const Text(
+                    'New Customer',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                leading: Radio(
+                  activeColor: Declarations.secondaryColor,
+                    value:AuthEnum.signup ,
+                    groupValue: auth,
+                    onChanged: (AuthEnum ? value)
+                    {
+                      setState(()
+                      {
+                        auth = value ?? AuthEnum.signup;
+                      });
+                    },
+                ),
+              ),
+              if(auth == AuthEnum.signup)
+              Container(
+                decoration: const BoxDecoration(
+                  color: Declarations.backgroundColor,
+                ),
+                padding: const EdgeInsets.all(8.0),
+                child: Form(
+                  key: signupKey,
+                    child: Column(
+                      children:
+                      [
+                        CustomText(
+                          formController: nameController,
+                          hintText: 'Please Enter Your FullName',
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CustomText(
+                            formController: emailController,
+                          hintText: 'Please Enter Your Email',
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CustomText(
+                          formController: passwordController,
+                          hintText: 'Please Enter Your Password',
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CustomButton(
+                            text: 'Sign Up',
+                            onTap: ()
+                            {
+                              if(signupKey.currentState!.validate())
+                              {
+                                singUpUser();
+                              }
+                            }
+                        ),
+                      ],
+                    )
+                ),
+              ),
+              ListTile(
+                tileColor: auth == AuthEnum.signin ? Declarations.backgroundColor : Declarations.greyBackgroundColor,
+                title: const Text(
+                  'Have an account ?',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                leading: Radio(
+                  activeColor: Declarations.secondaryColor,
+                  value:AuthEnum.signin ,
                   groupValue: auth,
                   onChanged: (AuthEnum ? value)
                   {
                     setState(()
                     {
-                      auth = value ?? AuthEnum.signup;
+                      auth = value ?? AuthEnum.signin;
                     });
                   },
-              ),
-            ),
-            if(auth == AuthEnum.signup)
-            Container(
-              decoration: const BoxDecoration(
-                color: Declarations.backgroundColor,
-              ),
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
-                key: signupKey,
-                  child: Column(
-                    children:
-                    [
-                      CustomText(
-                        formController: nameController,
-                        hintText: 'Please Enter Your FullName',
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      CustomText(
-                          formController: emailController,
-                        hintText: 'Please Enter Your Email',
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      CustomText(
-                        formController: passwordController,
-                        hintText: 'Please Enter Your Password',
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      CustomButton(
-                          text: 'Sign Up',
-                          onTap: ()
-                          {
-                            if(signupKey.currentState!.validate())
-                            {
-                              singUpUser();
-                            }
-                          }
-                      ),
-                    ],
-                  )
-              ),
-            ),
-            ListTile(
-              tileColor: auth == AuthEnum.signin ? Declarations.backgroundColor : Declarations.greyBackgroundColor,
-              title: const Text(
-                'Have an account ?',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold
                 ),
               ),
-              leading: Radio(
-                activeColor: Declarations.secondaryColor,
-                value:AuthEnum.signin ,
-                groupValue: auth,
-                onChanged: (AuthEnum ? value)
-                {
-                  setState(()
-                  {
-                    auth = value ?? AuthEnum.signin;
-                  });
-                },
-              ),
-            ),
-             if(auth == AuthEnum.signin)
-               Container(
-                 decoration: const BoxDecoration(
-                   color: Declarations.backgroundColor,
-                 ),
-                 padding: const EdgeInsets.all(8.0),
-                 child: Form(
-                     key: signinKey,
-                     child: Column(
-                       children:
-                       [
-                         CustomText(
-                           formController: emailController,
-                           hintText: 'Please Enter Your Email',
-                         ),
-                         const SizedBox(
-                           height: 10,
-                         ),
-                         CustomText(
-                           formController: passwordController,
-                           hintText: 'Please Enter Your Password',
-                         ),
-                         const SizedBox(
-                           height: 10,
-                         ),
-                         CustomButton(
-                             text: 'Sign In',
-                             onTap: ()
-                             {
-                               if(signinKey.currentState!.validate())
+               if(auth == AuthEnum.signin)
+                 Container(
+                   decoration: const BoxDecoration(
+                     color: Declarations.backgroundColor,
+                   ),
+                   padding: const EdgeInsets.all(8.0),
+                   child: Form(
+                       key: signinKey,
+                       child: Column(
+                         children:
+                         [
+                           CustomText(
+                             formController: emailController,
+                             hintText: 'Please Enter Your Email',
+                           ),
+                           const SizedBox(
+                             height: 10,
+                           ),
+                           CustomText(
+                             formController: passwordController,
+                             hintText: 'Please Enter Your Password',
+                           ),
+                           const SizedBox(
+                             height: 10,
+                           ),
+                           CustomButton(
+                               text: 'Sign In',
+                               onTap: ()
                                {
-                                 singInUser();
+                                 if(signinKey.currentState!.validate())
+                                 {
+                                   singInUser();
+                                 }
                                }
-                             }
-                         ),
-                       ],
-                     )
+                           ),
+                         ],
+                       )
+                   ),
                  ),
-               ),
-          ],
-        ),
-       )),
+            ],
+          ),
+         )),
+      ),
     );
   }
 }
