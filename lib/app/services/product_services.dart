@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:my_souaq/app/models/product_model.dart';
 import 'package:my_souaq/app/models/user_model.dart';
 import 'package:my_souaq/components/error_handling.dart';
@@ -84,8 +85,89 @@ class ProductServices {
         userProvider.setObjectUser(user);
         if(qty > 0) {
           showSnackBar(context, 'product has been added successfully');
+          Navigator.pop(context);
         }
       });
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
+  void saveUserAddress({
+    required  context,
+    required String address,
+  }) async
+  {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    try {
+
+      http.Response res = await http.post(
+        Uri.parse('$myUri01/api/save-user-address'),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'my-souq-auth-token': userProvider.user.token
+        },
+        body: jsonEncode({
+          'address': address,
+        }),
+      );
+
+      httpErrorHandel(
+          response: res,
+          context: context,
+          onSuccess: ()
+          {
+            User user = userProvider.user.copyWith(
+              address: jsonDecode(res.body)['address'],
+            );
+            userProvider.setObjectUser(user);
+            showSnackBar(
+              context, 'Ok Address Has benn Updated',
+            );
+          });
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
+  void setAnOrder({
+    required  context,
+    required String paymentMethod,
+    required String address,
+    required double totalPrice,
+  }) async
+  {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    try {
+
+      http.Response res = await http.post(
+        Uri.parse('$myUri01/api/order'),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'my-souq-auth-token': userProvider.user.token
+        },
+        body: jsonEncode({
+          'cart':userProvider.user.cart,
+          'address': address,
+          'paymentMethod': paymentMethod,
+          'totalPrice': totalPrice,
+        }),
+      );
+
+      httpErrorHandel(
+          response: res,
+          context: context,
+          onSuccess: ()
+          {
+            User user = userProvider.user.copyWith(
+              cart:[],
+            );
+            userProvider.setObjectUser(user);
+            showSnackBar(
+              context, 'Ok Order Send Successfully',
+            );
+            Navigator.pop(context);
+          });
     } catch (e) {
       showSnackBar(context, e.toString());
     }
