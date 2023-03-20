@@ -78,7 +78,7 @@ class AuthServices{
   }
 
 
-  void getUserDate( context)async
+  void getUserDate(BuildContext context)async
   {
     try
     {
@@ -114,7 +114,7 @@ class AuthServices{
       }
     }catch(error)
     {
-      showSnackBar(context,error.toString());
+      error.toString();
     }
   }
 }

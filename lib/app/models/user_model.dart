@@ -10,9 +10,16 @@ class User {
   final String token;
   final List<dynamic> cart;
 
-  User({required this.id, required this.name, required this.password
-    , required this.address, required this.type, required this.token, required this.email,
-    required this.cart});
+  User({
+    required this.id,
+    required this.name,
+    required this.password,
+    required this.address,
+    required this.type,
+    required this.token,
+    required this.email,
+    required this.cart
+  });
 
   factory User.getNewEmpty() {
     return User(
