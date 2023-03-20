@@ -76,7 +76,7 @@ class User {
       name: name ?? this.name,
       password: password ?? this.password,
       email: email ?? this.email,
-      address: address ?? this.password,
+      address: address ?? this.address,
       type: type ?? this.type,
       token: token ?? this.token,
       cart: cart ?? this.cart,

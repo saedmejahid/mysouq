@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_souaq/app/services/product_services.dart';
 import 'package:my_souaq/app/styles/colors.dart';
 import 'package:my_souaq/app/widgets/custom_button.dart';
 import 'package:my_souaq/app/widgets/custom_text.dart';
@@ -17,6 +18,7 @@ class AddressScreen extends StatefulWidget
 }
 class _AddressScreenState extends State<AddressScreen>
 {
+  final ProductServices productServices = ProductServices();
   final TextEditingController addressController =TextEditingController();
   final TextEditingController numberController =TextEditingController();
   final TextEditingController areaController =TextEditingController();
@@ -36,7 +38,7 @@ class _AddressScreenState extends State<AddressScreen>
     );
   }
 
-  void payPressed(String theAddress)
+  void payPressed(String theAddress,String paymentMethod )
   {
     bool formOk = addressController.text.isNotEmpty || numberController.text.isNotEmpty ||
     areaController.text.isNotEmpty||markController.text.isNotEmpty;
@@ -59,6 +61,14 @@ class _AddressScreenState extends State<AddressScreen>
         showAlertDialog2(context, 'Stop', 'Fall all address info');
       }
     }
+    productServices.saveUserAddress(context: context, address: theAddress);
+    productServices.setAnOrder(
+        context: context,
+        paymentMethod: paymentMethod,
+        address: theAddress,
+        totalPrice: double.parse(widget.totalAmount),
+    );
+    Navigator.pop(context);
   }
 
   @override
@@ -181,7 +191,7 @@ class _AddressScreenState extends State<AddressScreen>
                         margin: const EdgeInsets.only(top: 15.0),
                         onPaymentResult: (paymentResult)
                         {
-                          payPressed(address);
+                          payPressed(address,"GPAY");
                         },
                         loadingIndicator: const Center(
                           child: CircularProgressIndicator(),
@@ -195,7 +205,7 @@ class _AddressScreenState extends State<AddressScreen>
                          icon: Icons.money,
                          onTap: ()
                          {
-                           payPressed(address);
+                           payPressed(address,"CASH");
                          },
                        ),
                     ],
