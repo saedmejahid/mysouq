@@ -11,5 +11,7 @@ class Assets {
   static const String imagesEssential = 'assets/images/essential.png';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesMobile = 'assets/images/mobile.png';
+  static const String mySouaqAssetsApplepay = 'assets/applepay.json';
+  static const String mySouaqAssetsGpay = 'assets/gpay.json';
 
 }

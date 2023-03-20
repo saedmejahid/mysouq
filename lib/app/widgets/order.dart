@@ -42,15 +42,17 @@ class _OrderState extends State<Order>
               padding: const EdgeInsets.only(
                 right: 15,
               ),
-              child:Text(
-                'View All',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Declarations.selectedNavBarColor
+              child:InkWell(
+                onTap: (){},
+                child: Text(
+                  'View All',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Declarations.selectedNavBarColor
+                  ),
                 ),
               ),
             ),
-
           ],
         ),
         Container(
