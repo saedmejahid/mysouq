@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:my_souaq/app/styles/colors.dart';
+import 'package:my_souaq/app/widgets/custom_button.dart';
 import 'package:my_souaq/app/widgets/custom_text.dart';
+import 'package:my_souaq/components/utils.dart';
 import 'package:my_souaq/provider/user_provider.dart';
+import 'package:pay/pay.dart';
 import 'package:provider/provider.dart';
 class AddressScreen extends StatefulWidget
 {
-   const AddressScreen({Key? key}) : super(key: key);
+   const AddressScreen({Key? key,required this.totalAmount}) : super(key: key);
   static const String routeName = '/address';
+  final  String totalAmount;
   @override
   State<AddressScreen> createState() => _AddressScreenState();
+
 }
 class _AddressScreenState extends State<AddressScreen>
 {
@@ -17,6 +22,45 @@ class _AddressScreenState extends State<AddressScreen>
   final TextEditingController areaController =TextEditingController();
   final TextEditingController markController =TextEditingController();
   final addressFormKey = GlobalKey<FormState>();
+  final List <PaymentItem>  paymentItems = [];
+  @override
+  void initState()
+  {
+    super.initState();
+    paymentItems.add(
+         PaymentItem(
+          label: 'Total',
+          amount: widget.totalAmount,
+          status: PaymentItemStatus.final_price,
+        )
+    );
+  }
+
+  void payPressed(String theAddress)
+  {
+    bool formOk = addressController.text.isNotEmpty || numberController.text.isNotEmpty ||
+    areaController.text.isNotEmpty||markController.text.isNotEmpty;
+    if(formOk)
+    {
+      if(addressFormKey.currentState!.validate())
+      {
+        theAddress = "${addressController.text},"
+            "${areaController.text}"
+            "${markController.text}"
+            "${numberController.text}";
+      }else
+      {
+        showAlertDialog2(context,'Stop','Fall all address info');
+      }
+    }else
+    {
+      if(theAddress.isEmpty)
+      {
+        showAlertDialog2(context, 'Stop', 'Fall all address info');
+      }
+    }
+  }
+
   @override
   void dispose()
   {
@@ -126,6 +170,34 @@ class _AddressScreenState extends State<AddressScreen>
                         hintText: ' Special, Mark',
                         icon: Icons.markunread_mailbox_outlined,
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GooglePayButton(
+                        paymentConfigurationAsset: 'gpay.json',
+                        width: double.infinity,
+                        paymentItems: paymentItems,
+                        type: GooglePayButtonType.buy,
+                        margin: const EdgeInsets.only(top: 15.0),
+                        onPaymentResult: (paymentResult)
+                        {
+                          payPressed(address);
+                        },
+                        loadingIndicator: const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                       CustomButton(
+                         text: 'Cash on delivery',
+                         icon: Icons.money,
+                         onTap: ()
+                         {
+                           payPressed(address);
+                         },
+                       ),
                     ],
                   )
               ),
