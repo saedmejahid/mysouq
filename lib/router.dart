@@ -1,11 +1,13 @@
 
 import 'package:flutter/material.dart';
+import 'package:my_souaq/app/models/orders_model.dart';
 import 'package:my_souaq/app/models/product_model.dart';
 import 'package:my_souaq/app/screens/add_product.dart';
 import 'package:my_souaq/app/screens/address_screen.dart';
 import 'package:my_souaq/app/screens/auth_screen.dart';
 import 'package:my_souaq/app/screens/category_deal_screen.dart';
 import 'package:my_souaq/app/screens/home_screen.dart';
+import 'package:my_souaq/app/screens/order_details_screen.dart';
 import 'package:my_souaq/app/screens/product_details_screen.dart';
 import 'package:my_souaq/app/screens/search_screen.dart';
 import 'package:my_souaq/app/widgets/bottom_bar.dart';
@@ -70,6 +72,14 @@ Route<dynamic> generateRoute(RouteSettings routeSettings)
           builder: (context) =>  AddressScreen(
             totalAmount: totalAmount,
           ),
+      );
+    case OrderDetailsScreen.routeName:
+      var order = routeSettings.arguments as Orders;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (context) =>  OrderDetailsScreen(
+          order: order,
+        ),
       );
 
     default: return MaterialPageRoute(
