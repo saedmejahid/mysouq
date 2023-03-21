@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:my_souaq/app/screens/admin_order_screen.dart';
 import 'package:my_souaq/app/screens/analytics_screen.dart';
-import 'package:my_souaq/app/screens/item_screen.dart';
 import 'package:my_souaq/app/screens/posts_screen.dart';
 import 'package:my_souaq/app/styles/colors.dart';
 import 'package:my_souaq/app/widgets/bottom_bar.dart';
 class AdminScreen extends StatefulWidget
 {
   const AdminScreen({Key? key}) : super(key: key);
+  static const String routeName = "/admin-screen";
 
   @override
   State<AdminScreen> createState() => _AdminScreenState();
@@ -20,7 +21,7 @@ class _AdminScreenState extends State<AdminScreen>
     [
       const PostScreen(),
       const AnalyticsScreen(),
-      const ItemScreen(),
+      const AdminOrdersScreen(),
     ];
     void updateBadge(int badge)
     {
@@ -90,7 +91,7 @@ class _AdminScreenState extends State<AdminScreen>
           ),
           getNavBottom(
               icon: Icons.category,
-              title: 'Items',
+              title: 'Orders',
               index: 2,
           ),
         ],
