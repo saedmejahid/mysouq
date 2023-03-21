@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:my_souaq/app/models/user_model.dart';
+import 'package:my_souaq/app/screens/auth_screen.dart';
 import 'package:my_souaq/app/widgets/bottom_bar.dart';
 import 'package:my_souaq/components/error_handling.dart';
 import 'package:my_souaq/components/utils.dart';
@@ -77,8 +78,9 @@ class AuthServices{
     }
   }
 
-
-  void getUserDate(BuildContext context)async
+  void getUserDate(
+       context
+      )async
   {
     try
     {
@@ -115,6 +117,18 @@ class AuthServices{
     }catch(error)
     {
       error.toString();
+    }
+  }
+  void logOut(BuildContext context) async {
+    try {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      await preferences.setString('my-souq-auth-token', '');
+      Navigator.pushNamedAndRemoveUntil(
+          context, AuthScreen.routName,
+              (route) => false
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
     }
   }
 }

@@ -4,6 +4,7 @@ import 'package:my_souaq/app/models/orders_model.dart';
 import 'package:my_souaq/app/models/product_model.dart';
 import 'package:my_souaq/app/screens/add_product.dart';
 import 'package:my_souaq/app/screens/address_screen.dart';
+import 'package:my_souaq/app/screens/admin_screen.dart';
 import 'package:my_souaq/app/screens/auth_screen.dart';
 import 'package:my_souaq/app/screens/category_deal_screen.dart';
 import 'package:my_souaq/app/screens/home_screen.dart';
@@ -81,7 +82,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings)
           order: order,
         ),
       );
-
+    case AdminScreen.routeName:
+      return MaterialPageRoute(
+          settings: routeSettings,
+          builder: (_) => const AdminScreen()
+      );
     default: return MaterialPageRoute(
           settings: routeSettings,
           builder: (context) => const Scaffold(
