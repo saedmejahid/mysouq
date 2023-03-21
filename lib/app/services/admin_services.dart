@@ -4,6 +4,8 @@ import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:my_souaq/app/models/orders_model.dart';
 import 'package:my_souaq/app/models/product_model.dart';
+import 'package:my_souaq/app/models/sales_model.dart';
+import 'package:my_souaq/app/styles/colors.dart';
 import 'package:my_souaq/components/error_handling.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_souaq/components/utils.dart';
@@ -196,5 +198,44 @@ class AdminService
       showSnackBar(context, e.toString());
     }
   }
+  Future<Map<String, dynamic>> getTotalSales(context) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<Sales> sales = [];
+    double totalSales = 0;
+    double totalOrders = 0;
+    double totalProducts = 0;
+    try {
+      http.Response res = await http.get(
+        Uri.parse('$myUri01/admin/analytics'),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'my-souq-auth-token': userProvider.user.token
+        },
+      );
+
+      httpErrorHandel(response: res, context: context, onSuccess: () {
+        var result = jsonDecode(res.body);
+        totalSales = Declarations.checkDouble(result['totalSales'] ?? 0.0);
+        totalOrders = Declarations.checkDouble(result['totalOrders'] ?? 0.0);
+        totalProducts = Declarations.checkDouble(result['totalProducts'] ?? 0.0);
+        sales = [
+          Sales(label: 'Mobiles', totalSale: Declarations.checkDouble(result['catMobiles'] ?? 0.0)),
+          Sales(label: 'Appliances', totalSale: Declarations.checkDouble(result['catAppliances'] ?? 0.0)),
+          Sales(label: 'Fashion', totalSale: Declarations.checkDouble(result['catFashion'] ?? 0.0)),
+          Sales(label: 'Essentials', totalSale: Declarations.checkDouble(result['catEssentials'] ?? 0.0)),
+          Sales(label: 'Computers', totalSale: Declarations.checkDouble(result['catComputers'] ?? 0.0)),
+        ];
+      });
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+    return {
+      'sales': sales,
+      'totalSales': totalSales,
+      'totalOrders': totalOrders,
+      'totalProducts':totalProducts
+    };
+  }
+
 
 }

@@ -21,4 +21,14 @@ class Declarations
   static const Color greyBackgroundColor = Color(0xffdcdcf3);
   static var selectedNavBarColor = const Color.fromARGB(255, 41, 59, 185);
   static const unselectedNavBarColor = Colors.blueGrey;
+
+  static double checkDouble(dynamic value) {
+    if (value is int) {
+      return value.toDouble();
+    } else if (value is String) {
+      return double.parse(value);
+    } else {
+      return value;
+    }
+  }
 }
