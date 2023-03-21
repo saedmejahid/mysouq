@@ -119,6 +119,7 @@ class AuthServices{
       error.toString();
     }
   }
+
   void logOut(BuildContext context) async {
     try {
       SharedPreferences preferences = await SharedPreferences.getInstance();
