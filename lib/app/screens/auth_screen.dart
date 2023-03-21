@@ -18,9 +18,9 @@ class AuthScreen extends StatefulWidget
 
 class _AuthScreenState extends State<AuthScreen>
 {
-  AuthEnum auth = AuthEnum.signup;
-  final signupKey = GlobalKey<FormState>();
-  final signinKey = GlobalKey<FormState>();
+  AuthEnum _auth = AuthEnum.signup;
+  final _signUpKey = GlobalKey<FormState>();
+  final _signInKey = GlobalKey<FormState>();
   final AuthServices  authService = AuthServices();
   final TextEditingController  emailController = TextEditingController();
   final TextEditingController  passwordController = TextEditingController();
@@ -34,7 +34,7 @@ class _AuthScreenState extends State<AuthScreen>
     nameController.dispose();
   }
 
-  void singUpUser()
+  void signUpUser()
   {
     authService.singUpUser(context: context,
         email: emailController.text,
@@ -43,7 +43,7 @@ class _AuthScreenState extends State<AuthScreen>
     );
   }
 
-  void singInUser()
+  void signInUser()
   {
     authService.singInUser(context: context,
       email: emailController.text,
@@ -55,151 +55,164 @@ class _AuthScreenState extends State<AuthScreen>
   {
     return Scaffold(
       backgroundColor: Declarations.greyBackgroundColor,
-      body: SingleChildScrollView(
-        child: SafeArea(
-            child: Padding(
-             padding: const EdgeInsets.all(8.0),
-             child: Column(
-               crossAxisAlignment: CrossAxisAlignment.start,
-             children:
-             [
-               const Text(
-                 'Welcome',
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500
-                ),
-              ),
-              ListTile(
-                tileColor: auth == AuthEnum.signup ? Declarations.backgroundColor : Declarations.greyBackgroundColor,
-                title: const Text(
-                    'New Customer',
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Welcome',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                leading: Radio(
-                  activeColor: Declarations.secondaryColor,
-                    value:AuthEnum.signup ,
-                    groupValue: auth,
-                    onChanged: (AuthEnum ? value)
-                    {
-                      setState(()
-                      {
-                        auth = value ?? AuthEnum.signup;
+                  ListTile(
+                  tileColor: _auth == AuthEnum.signup ? Colors.blueGrey : Declarations.greyBackgroundColor,
+                  title: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _auth = AuthEnum.signup;
                       });
                     },
-                ),
-              ),
-              if(auth == AuthEnum.signup)
-              Container(
-                decoration: const BoxDecoration(
-                  color: Declarations.backgroundColor,
-                ),
-                padding: const EdgeInsets.all(8.0),
-                child: Form(
-                  key: signupKey,
-                    child: Column(
-                      children:
-                      [
-                        CustomText(
-                          formController: nameController,
-                          hintText: 'Please Enter Your FullName',
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        CustomText(
-                            formController: emailController,
-                          hintText: 'Please Enter Your Email',
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        CustomText(
-                          formController: passwordController,
-                          hintText: 'Please Enter Your Password',
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        CustomButton(
-                            text: 'Sign Up',
-                            onTap: ()
-                            {
-                              if(signupKey.currentState!.validate())
-                              {
-                                singUpUser();
-                              }
-                            }
-                        ),
-                      ],
-                    )
-                ),
-              ),
-              ListTile(
-                tileColor: auth == AuthEnum.signin ? Declarations.backgroundColor : Declarations.greyBackgroundColor,
-                title: const Text(
-                  'Have an account ?',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold
+                    child: Text("New Customer", style:
+                    TextStyle(
+                        color: _auth == AuthEnum.signup ? Colors.amber : Colors.black,
+                        fontWeight: FontWeight.bold
+                    ),
+                    ),
+                  ),
+                  leading:GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _auth = AuthEnum.signup;
+                      });
+                    },
+                    child: Icon (
+                      Icons.fiber_new_outlined,
+                      color: _auth == AuthEnum.signup ? Colors.amber : Colors.black,
+                    ),
                   ),
                 ),
-                leading: Radio(
-                  activeColor: Declarations.secondaryColor,
-                  value:AuthEnum.signin ,
-                  groupValue: auth,
-                  onChanged: (AuthEnum ? value)
-                  {
-                    setState(()
-                    {
-                      auth = value ?? AuthEnum.signin;
-                    });
-                  },
+                if (_auth == AuthEnum.signup)
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Declarations.backgroundColor,
+                    child: Form(
+                        key: _signUpKey,
+                        child: Column(
+                          children:
+                          [
+                            CustomText(
+                              formController: nameController, hintText: 'fullName', icon: Icons.person_outline,),
+                            const SizedBox(height: 10,),
+                            CustomText(formController: emailController, hintText: 'Email',icon: Icons.email_outlined),
+                            const SizedBox(height: 10,),
+                            CustomText(
+                              formController: passwordController,
+                              hintText: 'password',
+                              icon: Icons.password_outlined,
+                              isPassword: true,
+                            ),
+                            const SizedBox(height: 10,),
+                            CustomButton(text: "Sign Up", onTap: () {
+                              if (_signUpKey.currentState!.validate()) {
+                                signUpUser();
+                              }
+                            },
+                            )
+                          ],
+                        )
+                    ),
+                  ),
+                  ListTile(
+                  tileColor: _auth == AuthEnum.signin ? Colors.blueGrey : Declarations.greyBackgroundColor,
+                  title: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _auth = AuthEnum.signin;
+                      });
+                    },
+                    child: Text("Have an account ?",
+                      style: TextStyle(
+                        color: _auth == AuthEnum.signin ? Colors.amber : Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  leading:GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _auth = AuthEnum.signin;
+                      });
+                    },
+                    child: Icon (
+                      Icons.accessibility_new_outlined,
+                      color: _auth == AuthEnum.signin ? Colors.amber : Colors.black,
+                    ),
+                  ),
                 ),
-              ),
-               if(auth == AuthEnum.signin)
-                 Container(
-                   decoration: const BoxDecoration(
-                     color: Declarations.backgroundColor,
-                   ),
-                   padding: const EdgeInsets.all(8.0),
-                   child: Form(
-                       key: signinKey,
-                       child: Column(
-                         children:
-                         [
-                           CustomText(
-                             formController: emailController,
-                             hintText: 'Please Enter Your Email',
-                           ),
-                           const SizedBox(
-                             height: 10,
-                           ),
-                           CustomText(
-                             formController: passwordController,
-                             hintText: 'Please Enter Your Password',
-                           ),
-                           const SizedBox(
-                             height: 10,
-                           ),
-                           CustomButton(
-                               text: 'Sign In',
-                               onTap: ()
-                               {
-                                 if(signinKey.currentState!.validate())
-                                 {
-                                   singInUser();
-                                 }
-                               }
-                           ),
-                         ],
-                       )
-                   ),
-                 ),
-            ],
+                if (_auth == AuthEnum.signin)
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Declarations.backgroundColor,
+                    child: Form(
+                        key: _signInKey,
+                        child: Column(
+                          children: [
+                            CustomText(formController: emailController, hintText: 'Email', icon: Icons.email_outlined),
+                            const SizedBox(height: 10,),
+                            CustomText(
+                              formController: passwordController,
+                              hintText: 'password',
+                              icon: Icons.password_outlined,
+                              isPassword: true,
+                            ),
+                            const SizedBox(height: 10,),
+                            CustomButton(text: "Sign In", onTap: () {
+                              if (_signInKey.currentState!.validate()) {
+                                signInUser();
+                              }
+                            },)
+                          ],
+                        )
+                    ),
+                  ),
+                const SizedBox(
+                  height: 10,
+                ),
+                  Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                          child: Image.asset(
+                            "assets/buttons/google.png",
+                            width: 260,
+                          ),
+                          onTap: () {
+
+                          }),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GestureDetector(
+                          child: Image.asset(
+                            "assets/buttons/fb.png",
+                            width: 260,
+                          ),
+                          onTap: () {
+
+                          }),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-         )),
+        ),
       ),
     );
   }
