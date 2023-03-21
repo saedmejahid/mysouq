@@ -11,9 +11,19 @@ class Product {
   String? id;
   String? userId;
   final List<Rating>? rating;
+  double? selQty;
 
-  Product({required this.name,required this.description,required this.price,required this.qty,required this.category,
-    required this.images, this.id, this.userId, this.rating});
+  Product({
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.qty,
+    required this.category,
+    required this.images,
+    this.id,
+    this.userId,
+    this.rating,
+  });
 
   factory Product.getNewEmpty() {
     return Product(

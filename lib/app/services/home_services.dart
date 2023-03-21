@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:my_souaq/app/models/orders_model.dart';
 import 'package:my_souaq/app/models/product_model.dart';
 import 'package:my_souaq/components/error_handling.dart';
 import 'package:my_souaq/components/utils.dart';
@@ -116,5 +117,34 @@ class HomeServices
       showSnackBar(context, e.toString());
     }
     return productsList;
+  }
+
+  Future<List<Orders>> getMyOrders({
+    required  context,
+  }) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<Orders> orderList = [];
+    try {
+      http.Response res = await http.get(
+        Uri.parse('$myUri01/api/my-orders'),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'my-souq-auth-token': userProvider.user.token
+        },
+      );
+
+      httpErrorHandel(response: res, context: context, onSuccess: () {
+        for (int i =0; i < jsonDecode(res.body).length; i++) {
+          orderList.add(
+              Orders.fromJson(
+                  jsonEncode(jsonDecode(res.body)[i])
+              )
+          );
+        }
+      });
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+    return orderList;
   }
 }
