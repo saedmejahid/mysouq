@@ -24,14 +24,12 @@ class _TopButtonsState extends State<TopButtons> {
         Row(
           children: [
             AccountButton(
-              text: "wish list",
-              onClick: () {},
-            ),
-            AccountButton(
-              text: "log out",
-              onClick: () {
+              text: "Logout",
+              onClick: ()
+              {
                 showAlertDialog(
-                    context, () {
+                    context, ()
+                {
                   authService.logOut(context);
                 },
                     'Stop',
@@ -45,7 +43,7 @@ class _TopButtonsState extends State<TopButtons> {
         Row(
           children: [
             AccountButton(
-              text: "admin Tools",
+              text: "Admin Tools",
               onClick: () {
                 if (user.type == "admin") {
                   Navigator.pushNamed(context, AdminScreen.routeName);
