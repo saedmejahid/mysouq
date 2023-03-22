@@ -33,6 +33,7 @@ class AccountButton extends StatelessWidget
                 text,
               style: const TextStyle(
                 fontWeight: FontWeight.normal,
+                fontSize: 20,
                 color: Colors.black,
               ),
         )),
